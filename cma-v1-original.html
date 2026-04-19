@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparative Market Analysis - 10 Wildberry Lane, Saco, ME</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --navy: #1a2744;
+    --gold: #c9a84c;
+    --gold-light: #e8d8a0;
+    --cream: #faf8f2;
+    --dark: #222;
+    --gray: #666;
+    --light-gray: #e8e6e0;
+    --white: #fff;
+    --green: #2d7a4f;
+    --green-light: #e8f5e9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--dark);
+    background: var(--white);
+    line-height: 1.6;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  @page {
+    size: letter;
+    margin: 0.5in;
+  }
+
+  @media print {
+    .page-break { page-break-before: always; }
+    .no-break { page-break-inside: avoid; }
+    body { font-size: 11px; }
+
+    /* Cover page fills printed page */
+    .cover {
+      height: auto;
+      min-height: 9in;
+      page-break-after: always;
+    }
+
+    /* Ensure sections don't orphan headers */
+    .section { padding: 36px 40px; }
+    .section-header { page-break-after: avoid; }
+
+    /* Cards and tables stay together */
+    .stat-box,
+    .feature-item,
+    .comp-card,
+    .market-card,
+    .improvement-item,
+    .improvements,
+    .highlight-box,
+    .value-conclusion { page-break-inside: avoid; }
+
+    .comp-table-wrapper,
+    .adj-table { page-break-inside: avoid; }
+
+    /* Gallery images print well */
+    .gallery-grid img {
+      height: 180px;
+      page-break-inside: avoid;
+    }
+
+    /* Floor plan image sizing */
+    .floorplan-container img { max-width: 100%; }
+
+    /* Value conclusion section stays together */
+    .value-conclusion { page-break-inside: avoid; }
+
+    /* Background colors print */
+    .section-alt { background: #faf8f2 !important; }
+    .cover-overlay { background: rgba(26,39,68,0.92) !important; }
+    .stat-box, .comp-card, .market-card { border: 1px solid #ccc !important; }
+
+    /* Links don't show URL */
+    a[href]:after { content: none !important; }
+
+    /* Hide interactive map, show print fallback */
+    #map { display: none !important; }
+    .map-print-fallback { display: block !important; }
+
+    /* Footer */
+    .report-footer { page-break-before: avoid; }
+  }
+
+  /* ── Cover Page ── */
+  .cover {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    background: var(--navy);
+  }
+
+  .cover-image {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.55;
+  }
+
+  .cover-overlay {
+    position: relative;
+    z-index: 2;
+    padding: 60px 80px;
+    background: linear-gradient(transparent, rgba(26,39,68,0.92) 40%);
+  }
+
+  .cover-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+
+  .cover-subtitle {
+    font-size: 22px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 40px;
+  }
+
+  .cover-meta {
+    display: flex;
+    gap: 40px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(201,168,76,0.4);
+  }
+
+  .cover-meta-item {
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+  }
+
+  .cover-meta-item strong {
+    display: block;
+    color: var(--white);
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  /* ── Section Layout ── */
+  .section {
+    padding: 60px 80px;
+  }
+
+  .section-alt {
+    background: var(--cream);
+  }
+
+  .section-header {
+    margin-bottom: 40px;
+  }
+
+  .section-label {
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+
+  .section-desc {
+    font-size: 16px;
+    color: var(--gray);
+    margin-top: 12px;
+    max-width: 700px;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: var(--gold);
+    margin: 16px 0;
+  }
+
+  /* ── Property Overview ── */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 20px;
+  }
+
+  .stat-card {
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    border-radius: 12px;
+    padding: 28px 32px;
+    transition: box-shadow 0.2s;
+  }
+
+  .stat-card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+
+  .stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .stat-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 32px;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 20px;
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid var(--light-gray);
+  }
+
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--cream);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .feature-text {
+    font-size: 14px;
+    color: var(--dark);
+  }
+
+  .feature-text strong {
+    display: block;
+    font-weight: 600;
+  }
+
+  /* ── Stats Row ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 32px;
+  }
+
+  .stat-box {
+    text-align: center;
+    padding: 32px 20px;
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid var(--light-gray);
+  }
+
+  .stat-box .number {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .stat-box .label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray);
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ── Photo Gallery ── */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .gallery-grid img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .gallery-grid .wide {
+    grid-column: span 2;
+  }
+
+  .gallery-grid .tall {
+    grid-row: span 2;
+    height: 100%;
+  }
+
+  /* ── Floor Plan ── */
+  .floorplan-container {
+    text-align: center;
+    margin-top: 24px;
+  }
+
+  .floorplan-container img {
+    max-width: 100%;
+    border-radius: 12px;
+    border: 1px solid var(--light-gray);
+  }
+
+  .floorplan-stats {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin-top: 24px;
+  }
+
+  .floorplan-stat {
+    text-align: center;
+  }
+
+  .floorplan-stat .number {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .floorplan-stat .label {
+    font-size: 13px;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+
+  /* ── Comp Table ── */
+  .comp-table-wrapper {
+    overflow-x: auto;
+    margin-top: 24px;
+  }
+
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .comp-table thead th {
+    background: var(--navy);
+    color: var(--white);
+    font-weight: 600;
+    padding: 14px 16px;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .comp-table thead th:first-child {
+    border-radius: 10px 0 0 0;
+  }
+
+  .comp-table thead th:last-child {
+    border-radius: 0 10px 0 0;
+  }
+
+  .comp-table tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--light-gray);
+    vertical-align: top;
+  }
+
+  .comp-table tbody tr:hover {
+    background: rgba(201,168,76,0.06);
+  }
+
+  .comp-table .subject-row {
+    background: rgba(201,168,76,0.08);
+    font-weight: 600;
+  }
+
+  .comp-table .subject-row td {
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-closed { background: var(--green-light); color: var(--green); }
+  .badge-pending { background: #fff3e0; color: #e65100; }
+  .badge-subject { background: rgba(201,168,76,0.15); color: #9a7b2c; }
+
+  /* ── Adjustment Grid ── */
+  .adj-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 24px;
+  }
+
+  .adj-table thead th {
+    background: var(--navy);
+    color: var(--white);
+    font-weight: 600;
+    padding: 12px 14px;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .adj-table thead th:first-child {
+    text-align: left;
+    border-radius: 10px 0 0 0;
+  }
+
+  .adj-table thead th:last-child {
+    border-radius: 0 10px 0 0;
+  }
+
+  .adj-table tbody td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--light-gray);
+    text-align: center;
+  }
+
+  .adj-table tbody td:first-child {
+    text-align: left;
+    font-weight: 500;
+  }
+
+  .adj-table .total-row {
+    background: rgba(201,168,76,0.1);
+    font-weight: 700;
+  }
+
+  .adj-table .total-row td {
+    border-top: 2px solid var(--navy);
+    padding: 14px;
+    font-size: 15px;
+  }
+
+  .adj-positive { color: var(--green); }
+  .adj-negative { color: #c0392b; }
+  .adj-neutral { color: var(--gray); }
+
+  /* ── Value Conclusion ── */
+  .value-conclusion {
+    background: var(--navy);
+    border-radius: 16px;
+    padding: 48px;
+    text-align: center;
+    margin-top: 40px;
+    color: var(--white);
+  }
+
+  .value-conclusion .label {
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .value-range {
+    font-family: 'Playfair Display', serif;
+    font-size: 54px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .value-note {
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    max-width: 600px;
+    margin: 16px auto 0;
+    line-height: 1.6;
+  }
+
+  .value-rationale {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 36px;
+    text-align: center;
+  }
+
+  .rationale-item {
+    padding: 20px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .rationale-item .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .rationale-item .text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 4px;
+  }
+
+  /* ── Improvement Highlight ── */
+  .improvements {
+    background: var(--white);
+    border: 2px solid var(--gold);
+    border-radius: 16px;
+    padding: 36px 40px;
+    margin-top: 32px;
+  }
+
+  .improvements h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: var(--navy);
+    margin-bottom: 20px;
+  }
+
+  .improvement-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .improvement-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--cream);
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  .check {
+    width: 24px;
+    height: 24px;
+    background: var(--green);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  /* ── Market Context ── */
+  .market-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 28px;
+  }
+
+  .market-card {
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid var(--light-gray);
+    padding: 28px;
+    text-align: center;
+  }
+
+  .market-card .number {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .market-card .label {
+    font-size: 13px;
+    color: var(--gray);
+    margin-top: 8px;
+  }
+
+  .market-card .sub {
+    font-size: 12px;
+    color: var(--gold);
+    margin-top: 4px;
+    font-weight: 600;
+  }
+
+  /* ── Footer ── */
+  .report-footer {
+    padding: 40px 80px;
+    background: var(--navy);
+    color: rgba(255,255,255,0.6);
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .report-footer .agent-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .report-footer .brokerage {
+    font-size: 14px;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .disclaimer {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 11px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.4);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── Highlight Box ── */
+  .highlight-box {
+    background: linear-gradient(135deg, var(--navy), #2a3f6f);
+    color: var(--white);
+    border-radius: 16px;
+    padding: 36px 40px;
+    margin-top: 32px;
+  }
+
+  .highlight-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin-bottom: 16px;
+    color: var(--gold-light);
+  }
+
+  .highlight-box p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* ── Summary Cards ── */
+  .comp-summary-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 24px;
+  }
+
+  .comp-card {
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    border-radius: 12px;
+    padding: 24px;
+    position: relative;
+  }
+
+  .comp-card-number {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .comp-card h4 {
+    font-size: 16px;
+    color: var(--navy);
+    margin-bottom: 4px;
+    padding-right: 40px;
+  }
+
+  .comp-card .price {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 8px 0;
+  }
+
+  .comp-card .details {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  .comp-card .tag {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .tag-green { background: var(--green-light); color: var(--green); }
+  .tag-orange { background: #fff3e0; color: #e65100; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     COVER PAGE
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <img class="cover-image" src="assets/photos/DSC04837.webp" alt="10 Wildberry Lane">
+  <div class="cover-overlay">
+    <div class="cover-label">Comparative Market Analysis</div>
+    <div class="cover-title">10 Wildberry Lane</div>
+    <div class="cover-subtitle">Saco, Maine 04072</div>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <strong>Prepared For</strong>
+        Saif &amp; Rana
+      </div>
+      <div class="cover-meta-item">
+        <strong>Prepared By</strong>
+        Richard Reynolds
+      </div>
+      <div class="cover-meta-item">
+        <strong>Brokerage</strong>
+        Keller Williams Realty of Maine
+      </div>
+      <div class="cover-meta-item">
+        <strong>Date</strong>
+        April 2, 2026
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PROPERTY OVERVIEW
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="section section-alt page-break">
+  <div class="section-header">
+    <div class="section-label">Your Property</div>
+    <div class="section-title">Property Overview</div>
+    <div class="divider"></div>
+    <p class="section-desc">A beautifully updated ranch home on a private 1.45-acre wooded lot with a mostly finished basement, heated 3-car garage, 2.5 bathrooms, and single-floor main-level living.</p>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="number">4</div>
+      <div class="label">Bedrooms</div>
+    </div>
+    <div class="stat-box">
+      <div class="number">2.5</div>
+      <div class="label">Bathrooms</div>
+    </div>
+    <div class="stat-box">
+      <div class="number">2,622</div>
+      <div class="label">Total Sq Ft</div>
+    </div>
+    <div class="stat-box">
+      <div class="number">1.45</div>
+      <div class="label">Acres</div>
+    </div>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-item">
+      <div class="feature-icon">&#127968;</div>
+      <div class="feature-text">
+        <strong>Ranch Style</strong>
+        Single-floor main-level living, built 2006
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">&#128663;</div>
+      <div class="feature-text">
+        <strong>3-Car Heated Garage</strong>
+        ~1,329 sq ft, year-round use
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">&#9660;</div>
+      <div class="feature-text">
+        <strong>Finished Basement</strong>
+        Rec room, bedroom, office/play room, full bath &mdash; 1,178 sq ft
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">&#127795;</div>
+      <div class="feature-text">
+        <strong>Private Wooded Lot</strong>
+        1.45 acres, dead-end road, corner lot
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">&#128293;</div>
+      <div class="feature-text">
+        <strong>Hot Tub &amp; Large Deck</strong>
+        Outdoor entertaining space
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">&#10052;</div>
+      <div class="feature-text">
+        <strong>Heat Pump + Wood Stove</strong>
+        Efficient multi-source heating &amp; cooling
+      </div>
+    </div>
+  </div>
+
+  <div class="improvements">
+    <h3>Key Improvements Since Last Sale ($565,000 &mdash; May 2024)</h3>
+    <div class="improvement-list">
+      <div class="improvement-item">
+        <div class="check">&#10003;</div>
+        <span>Basement finished: rec room, bedroom, office/play room, full bath</span>
+      </div>
+      <div class="improvement-item">
+        <div class="check">&#10003;</div>
+        <span>Bedroom count increased from 3 to 4</span>
+      </div>
+      <div class="improvement-item">
+        <div class="check">&#10003;</div>
+        <span>1,178 sq ft of additional finished living space</span>
+      </div>
+      <div class="improvement-item">
+        <div class="check">&#10003;</div>
+        <span>LVP flooring throughout entire basement</span>
+      </div>
+      <div class="improvement-item">
+        <div class="check">&#10003;</div>
+        <span>Recessed lighting &amp; drop ceiling installed</span>
+      </div>
+      <div class="improvement-item">
+        <div class="check">&#10003;</div>
+        <span>Entertainment-ready game room space</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PHOTO GALLERY
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="section page-break">
+  <div class="section-header">
+    <div class="section-label">Visual Tour</div>
+    <div class="section-title">Property Gallery</div>
+    <div class="divider"></div>
+  </div>
+
+  <div class="gallery-grid">
+    <img class="wide" src="assets/photos/DSC04862.webp" alt="Front Exterior">
+    <img src="assets/photos/DJI_20260330164249_0375_D.webp" alt="Aerial View">
+    <img src="assets/photos/DSC04682.webp" alt="Open Living Area">
+    <img src="assets/photos/DSC04698.webp" alt="Living Room">
+    <img src="assets/photos/DSC04662.webp" alt="Kitchen Open">
+  </div>
+
+  <div class="gallery-grid" style="margin-top: 12px;">
+    <img src="assets/photos/DSC04632.webp" alt="Kitchen">
+    <img src="assets/photos/DSC04652.webp" alt="Kitchen View 2">
+    <img src="assets/photos/DSC04722.webp" alt="Primary Bedroom">
+    <img src="assets/photos/DSC04742.webp" alt="Primary Bath">
+    <img src="assets/photos/DSC04617.webp" alt="Bedroom">
+    <img src="assets/photos/DSC04892.webp" alt="Deck & Hot Tub">
+  </div>
+
+  <h3 style="font-family: 'Playfair Display', serif; font-size: 22px; color: var(--navy); margin-top: 40px; margin-bottom: 16px;">Finished Basement</h3>
+  <div class="gallery-grid">
+    <img class="wide" src="assets/photos/DSC04753.webp" alt="Basement Rec Room">
+    <img src="assets/photos/DSC04767.webp" alt="Basement Living">
+    <img src="assets/photos/DSC04777.webp" alt="Basement Media">
+    <img src="assets/photos/DSC04797.webp" alt="Basement Bedroom">
+    <img src="assets/photos/DSC04812.webp" alt="Utility Area">
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FLOOR PLAN
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="section section-alt page-break">
+  <div class="section-header">
+    <div class="section-label">Layout</div>
+    <div class="section-title">Floor Plans</div>
+    <div class="divider"></div>
+    <p class="section-desc">Professional floor plans showing both the main level and the finished basement with dimensions.</p>
+  </div>
+
+  <div class="floorplan-container">
+    <img src="assets/floorplans/all_floors_10_wildberry_lane_saco_with_dim.webp" alt="Complete Floor Plan" style="max-width: 900px;">
+  </div>
+
+  <div class="floorplan-stats">
+    <div class="floorplan-stat">
+      <div class="number">1,444</div>
+      <div class="label">1st Floor Sq Ft</div>
+    </div>
+    <div class="floorplan-stat">
+      <div class="number">1,178</div>
+      <div class="label">Basement Finished Sq Ft</div>
+    </div>
+    <div class="floorplan-stat">
+      <div class="number">2,622</div>
+      <div class="label">Total Finished Sq Ft</div>
+    </div>
+    <div class="floorplan-stat">
+      <div class="number">1,329</div>
+      <div class="label">Garage Sq Ft</div>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="margin-top: 40px;">
+    <h3>Main Level Highlights</h3>
+    <p>The first floor features a spacious primary bedroom suite (13'7" x 16'6") with walk-in closet and private full bath, a generous living room (15'9" x 12'9"), an updated kitchen (15'3" x 13'1") with stainless steel appliances and cherry cabinetry, a formal dining room (15'9" x 13'1"), an additional bedroom (9'11" x 13'1"), a third bedroom (12'3" x 9'3"), and a second full bath &mdash; all connected by a long central hallway. The 3-car heated garage (43'4" x 30'7") provides exceptional vehicle and project space.</p>
+  </div>
+
+  <div class="highlight-box" style="margin-top: 20px; background: linear-gradient(135deg, #2d5a27, #3d7a37);">
+    <h3>Finished Basement Highlights</h3>
+    <p>The basement adds 1,178 sq ft of finished living area including an expansive recreation room (33'9" x 26'2") perfect for entertaining, a bedroom (11'7" x 22'3"), a versatile office/play room (12'6" x 13'1"), a full bathroom, and a dedicated utility/laundry area (17'11" x 26'2"). LVP flooring runs throughout the entire basement, complemented by recessed lighting and drop ceilings to create a bright, move-in ready lower level.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     LOCATION MAP
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="section page-break">
+  <div class="section-header">
+    <div class="section-label">Location</div>
+    <div class="section-title">Neighborhood &amp; Distances</div>
+    <div class="divider"></div>
+    <p class="section-desc">10 Wildberry Lane is situated in a private, wooded setting in Saco with convenient access to beaches, shopping, dining, Portland, and major transportation routes.</p>
+  </div>
+
+  <div id="map" style="width: 100%; height: 480px; border-radius: 12px; border: 1px solid var(--light-gray); margin-top: 24px;"></div>
+
+  <!-- Print fallback: location summary when map can't render -->
+  <div class="map-print-fallback" style="display: none; margin-top: 24px; text-align: center; padding: 48px 40px; background: var(--navy); border-radius: 12px; color: white;">
+    <div style="font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #c9a84c; margin-bottom: 8px;">Property Location</div>
+    <p style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: white;">10 Wildberry Lane, Saco, ME 04072</p>
+    <p style="font-size: 14px; color: rgba(255,255,255,0.6); margin-top: 8px;">43.5345&deg; N, 70.4504&deg; W &bull; Off Jenkins Road &bull; Private Dead-End &bull; Wooded 1.45-Acre Corner Lot</p>
+    <div style="display: flex; justify-content: center; gap: 40px; margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.15);">
+      <div><span style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#c9a84c;">0.5 mi</span><br><span style="font-size:12px;color:rgba(255,255,255,0.6);">to I-95</span></div>
+      <div><span style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#c9a84c;">9 min</span><br><span style="font-size:12px;color:rgba(255,255,255,0.6);">to Downtown Saco</span></div>
+      <div><span style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#c9a84c;">14 min</span><br><span style="font-size:12px;color:rgba(255,255,255,0.6);">to OOB Beach</span></div>
+      <div><span style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#c9a84c;">22 min</span><br><span style="font-size:12px;color:rgba(255,255,255,0.6);">to Portland</span></div>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px;">
+    <!-- Key Distances -->
+    <div>
+      <h3 style="font-family: 'Playfair Display', serif; font-size: 20px; color: var(--navy); margin-bottom: 16px;">Key Distances</h3>
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+        <tr style="border-bottom: 1px solid var(--light-gray);">
+          <td style="padding: 12px 8px; font-weight: 600; color: var(--navy);">Interstate 95</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">0.5 miles</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">1 min</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--light-gray);">
+          <td style="padding: 12px 8px; font-weight: 600; color: var(--navy);">Downtown Saco</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">4.2 miles</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">9 min</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--light-gray);">
+          <td style="padding: 12px 8px; font-weight: 600; color: var(--navy);">Old Orchard Beach</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">7.5 miles</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">14 min</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--light-gray);">
+          <td style="padding: 12px 8px; font-weight: 600; color: var(--navy);">Scarborough Shopping</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">5.8 miles</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">10 min</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--light-gray);">
+          <td style="padding: 12px 8px; font-weight: 600; color: var(--navy);">Portland (Old Port)</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">16.5 miles</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">22 min</td>
+        </tr>
+        <tr>
+          <td style="padding: 12px 8px; font-weight: 600; color: var(--navy);">Portland Jetport</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">12.8 miles</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">18 min</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Nearby Amenities -->
+    <div>
+      <h3 style="font-family: 'Playfair Display', serif; font-size: 20px; color: var(--navy); margin-bottom: 16px;">Nearby Amenities</h3>
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+        <tr style="border-bottom: 1px solid var(--light-gray);">
+          <td style="padding: 12px 8px; font-weight: 600; color: var(--navy);">Saco Schools (K-12)</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">3&ndash;5 miles</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">8 min</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--light-gray);">
+          <td style="padding: 12px 8px; font-weight: 600; color: var(--navy);">Deep Brook Golf Course</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">1.8 miles</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">5 min</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--light-gray);">
+          <td style="padding: 12px 8px; font-weight: 600; color: var(--navy);">Hannaford / Walmart</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">4.5 miles</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">9 min</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--light-gray);">
+          <td style="padding: 12px 8px; font-weight: 600; color: var(--navy);">Maine Medical Center</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">14 miles</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">20 min</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--light-gray);">
+          <td style="padding: 12px 8px; font-weight: 600; color: var(--navy);">Funtown Splashtown</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">2.5 miles</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">5 min</td>
+        </tr>
+        <tr>
+          <td style="padding: 12px 8px; font-weight: 600; color: var(--navy);">Biddeford / Mill District</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">5.0 miles</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--gray);">10 min</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div style="margin-top: 24px; padding: 20px 28px; background: var(--cream); border-radius: 12px; border-left: 4px solid var(--gold);">
+    <p style="font-size: 14px; color: var(--gray); line-height: 1.7;">
+      <strong style="color: var(--navy);">Note on I-95 Proximity:</strong> The property is approximately 0.5 miles from Interstate 95. While this provides exceptional highway access (1 minute to the on-ramp), it is a consideration for noise sensitivity. The wooded 1.45-acre lot and setback from the road provide natural sound buffering.
+    </p>
+  </div>
+
+  <!-- Leaflet Map Script -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Verified coordinates from Census Geocoder & OpenStreetMap Nominatim
+      var subjectLat = 43.53446, subjectLng = -70.45036;
+
+      var map = L.map('map').setView([43.5230, -70.4645], 14);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors',
+        maxZoom: 18
+      }).addTo(map);
+
+      // Subject property - gold star marker
+      var subjectIcon = L.divIcon({
+        html: '<div style="background:#c9a84c;color:#fff;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.3);">&#9733;</div>',
+        iconSize: [36, 36],
+        iconAnchor: [18, 18],
+        className: ''
+      });
+      L.marker([subjectLat, subjectLng], {icon: subjectIcon})
+        .addTo(map)
+        .bindPopup('<strong style="font-size:14px;">10 Wildberry Lane</strong><br>Subject Property<br><em>4 Bed / 2.5 Bath / 2,622 sf</em>')
+        .openPopup();
+
+      // Comp markers with numbers
+      function compMarker(num) {
+        return L.divIcon({
+          html: '<div style="background:#1a2744;color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.3);">' + num + '</div>',
+          iconSize: [28, 28],
+          iconAnchor: [14, 14],
+          className: ''
+        });
+      }
+
+      // Comp 1 - 51 Sancho Dr (Nominatim verified)
+      L.marker([43.51195, -70.47484], {icon: compMarker('1')}).addTo(map)
+        .bindPopup('<strong>Comp 1: 51 Sancho Dr</strong><br>Sold $610,000 &bull; 03/31/2026');
+      // Comp 2 - 6 Amari Ct (Nominatim verified)
+      L.marker([43.53147, -70.45923], {icon: compMarker('2')}).addTo(map)
+        .bindPopup('<strong>Comp 2: 6 Amari Ct</strong><br>Sold $699,900 &bull; 03/03/2026');
+      // Comp 3 - 23 Sancho Dr (Nominatim verified)
+      L.marker([43.51323, -70.47577], {icon: compMarker('3')}).addTo(map)
+        .bindPopup('<strong>Comp 3: 23 Sancho Dr</strong><br>Sold $700,000 &bull; 01/08/2025');
+      // Comp 4 - 18 Buxton Rd (Census verified)
+      L.marker([43.52480, -70.46219], {icon: compMarker('4')}).addTo(map)
+        .bindPopup('<strong>Comp 4: 18 Buxton Rd</strong><br>Pending $775,000');
+
+      // Landmark markers - green
+      var poiIcon = L.divIcon({
+        html: '<div style="background:#2d7a4f;color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:10px;border:2px solid #fff;box-shadow:0 2px 4px rgba(0,0,0,0.2);">&#8226;</div>',
+        iconSize: [22, 22],
+        iconAnchor: [11, 11],
+        className: ''
+      });
+
+      L.marker([43.5005, -70.4428], {icon: poiIcon}).addTo(map)
+        .bindPopup('Downtown Saco');
+      L.marker([43.5130, -70.4540], {icon: poiIcon}).addTo(map)
+        .bindPopup('Deep Brook Golf Course');
+
+      // I-95 line approximation through Saco
+      var i95Line = L.polyline([
+        [43.545, -70.4480],
+        [43.535, -70.4460],
+        [43.525, -70.4450],
+        [43.515, -70.4460],
+        [43.505, -70.4480],
+        [43.495, -70.4510]
+      ], {
+        color: '#c0392b',
+        weight: 3,
+        opacity: 0.6,
+        dashArray: '8, 6'
+      }).addTo(map).bindPopup('<strong>Interstate 95</strong><br>~0.5 mi from subject');
+
+      // Fit map to show all markers
+      var bounds = L.latLngBounds([
+        [subjectLat, subjectLng],
+        [43.51195, -70.47484],
+        [43.53147, -70.45923],
+        [43.51323, -70.47577],
+        [43.52480, -70.46219],
+        [43.5005, -70.4428]
+      ]);
+      map.fitBounds(bounds.pad(0.15));
+    });
+  </script>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     COMPARABLE SALES SUMMARY
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="section page-break">
+  <div class="section-header">
+    <div class="section-label">Market Data</div>
+    <div class="section-title">Comparable Properties</div>
+    <div class="divider"></div>
+    <p class="section-desc">Recent sales and pending transactions of similar homes in Saco, selected for location, size, features, and recency. All comparables are within the same school district and community.</p>
+  </div>
+
+  <div class="comp-summary-cards">
+    <div class="comp-card">
+      <div class="comp-card-number">1</div>
+      <h4>51 Sancho Drive, Saco</h4>
+      <div class="price">$610,000</div>
+      <div class="details">
+        3 Bed / 2.5 Bath &bull; 1,680 sq ft &bull; 0.34 acres<br>
+        Colonial, Built 2020 &bull; 2-Car Garage<br>
+        Public Water &amp; Sewer &bull; Fenced Yard
+      </div>
+      <span class="tag tag-green">SOLD 03/31/2026 &bull; 14 DOM &bull; $363/sf</span>
+    </div>
+    <div class="comp-card">
+      <div class="comp-card-number">2</div>
+      <h4>6 Amari Court, Saco</h4>
+      <div class="price">$699,900</div>
+      <div class="details">
+        4 Bed / 2.5 Bath &bull; 1,806 sq ft &bull; 0.35 acres<br>
+        Colonial, Built 2024 (New Construction) &bull; 2-Car Garage<br>
+        Public Water &amp; Sewer &bull; Daylight Basement
+      </div>
+      <span class="tag tag-green">SOLD 03/03/2026 &bull; 5 DOM &bull; $387/sf</span>
+    </div>
+    <div class="comp-card">
+      <div class="comp-card-number">3</div>
+      <h4>23 Sancho Drive, Saco</h4>
+      <div class="price">$700,000</div>
+      <div class="details">
+        4 Bed / 2.5 Bath &bull; 2,555 sq ft &bull; 0.45 acres<br>
+        Colonial, Built 2022 &bull; 2-Car Garage &bull; Generator<br>
+        Public Water &amp; Sewer &bull; Finished Basement (503 sf)
+      </div>
+      <span class="tag tag-green">SOLD 01/08/2025 &bull; 34 DOM &bull; $274/sf</span>
+    </div>
+    <div class="comp-card">
+      <div class="comp-card-number">4</div>
+      <h4>18 Buxton Road, Saco</h4>
+      <div class="price">$775,000</div>
+      <div class="details">
+        4 Bed / 2 Bath &bull; 4,062 sq ft &bull; 1.12 acres<br>
+        Colonial, Built 1826 (Antique) &bull; 2-Car Garage<br>
+        Public Water &amp; Sewer &bull; 600 SF Outbuilding
+      </div>
+      <span class="tag tag-orange">PENDING 02/26/2026 &bull; 7 DOM &bull; $191/sf listed</span>
+    </div>
+  </div>
+
+  <!-- Comp Photos -->
+  <h3 style="font-family: 'Playfair Display', serif; font-size: 22px; color: var(--navy); margin-top: 40px; margin-bottom: 20px;">Comparable Property Photos</h3>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+    <div style="text-align: center;">
+      <img src="assets/comp_photos/51_Sancho_Drive_photos.png" alt="51 Sancho Drive Photos" style="width: 100%; border-radius: 10px; border: 1px solid var(--light-gray);">
+      <p style="font-size: 13px; color: var(--gray); margin-top: 8px; font-weight: 600;">Comp 1: 51 Sancho Drive &mdash; $610,000</p>
+    </div>
+    <div style="text-align: center;">
+      <img src="assets/comp_photos/6_Amari_Court_photos.png" alt="6 Amari Court Photos" style="width: 100%; border-radius: 10px; border: 1px solid var(--light-gray);">
+      <p style="font-size: 13px; color: var(--gray); margin-top: 8px; font-weight: 600;">Comp 2: 6 Amari Court &mdash; $699,900</p>
+    </div>
+    <div style="text-align: center;">
+      <img src="assets/comp_photos/23_Sancho_Drive_photos.png" alt="23 Sancho Drive Photos" style="width: 100%; border-radius: 10px; border: 1px solid var(--light-gray);">
+      <p style="font-size: 13px; color: var(--gray); margin-top: 8px; font-weight: 600;">Comp 3: 23 Sancho Drive &mdash; $700,000</p>
+    </div>
+    <div style="text-align: center;">
+      <img src="assets/comp_photos/18_Buxton_Road_photos.png" alt="18 Buxton Road Photos" style="width: 100%; border-radius: 10px; border: 1px solid var(--light-gray);">
+      <p style="font-size: 13px; color: var(--gray); margin-top: 8px; font-weight: 600;">Comp 4: 18 Buxton Road &mdash; $775,000 (Pending)</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     COMPARISON TABLE
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="section section-alt page-break">
+  <div class="section-header">
+    <div class="section-label">Side-by-Side</div>
+    <div class="section-title">Detailed Comparison</div>
+    <div class="divider"></div>
+  </div>
+
+  <div class="comp-table-wrapper">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>10 Wildberry Ln<br><small>(Subject)</small></th>
+          <th>51 Sancho Dr<br><small>(Comp 1)</small></th>
+          <th>6 Amari Ct<br><small>(Comp 2)</small></th>
+          <th>23 Sancho Dr<br><small>(Comp 3)</small></th>
+          <th>18 Buxton Rd<br><small>(Comp 4)</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="subject-row">
+          <td>Status</td>
+          <td><span class="badge badge-subject">SUBJECT</span></td>
+          <td><span class="badge badge-closed">SOLD</span></td>
+          <td><span class="badge badge-closed">SOLD</span></td>
+          <td><span class="badge badge-closed">SOLD</span></td>
+          <td><span class="badge badge-pending">PENDING</span></td>
+        </tr>
+        <tr>
+          <td>Sale / List Price</td>
+          <td><strong>$650,000&ndash;$675,000</strong></td>
+          <td><strong>$610,000</strong></td>
+          <td><strong>$699,900</strong></td>
+          <td><strong>$700,000</strong></td>
+          <td><strong>$775,000</strong></td>
+        </tr>
+        <tr>
+          <td>Sale Date</td>
+          <td>&mdash;</td>
+          <td>03/31/2026</td>
+          <td>03/03/2026</td>
+          <td>01/08/2025</td>
+          <td>Pending</td>
+        </tr>
+        <tr>
+          <td>Style</td>
+          <td>Ranch</td>
+          <td>Colonial</td>
+          <td>Colonial</td>
+          <td>Colonial</td>
+          <td>Colonial</td>
+        </tr>
+        <tr>
+          <td>Year Built</td>
+          <td>2006</td>
+          <td>2020</td>
+          <td>2024</td>
+          <td>2022</td>
+          <td>1826</td>
+        </tr>
+        <tr>
+          <td>Bedrooms</td>
+          <td><strong>4</strong></td>
+          <td>3</td>
+          <td>4</td>
+          <td>4</td>
+          <td>4</td>
+        </tr>
+        <tr>
+          <td>Bathrooms</td>
+          <td><strong>2 Full / 1 Half</strong></td>
+          <td>2 Full / 1 Half</td>
+          <td>2 Full / 1 Half</td>
+          <td>2 Full / 1 Half</td>
+          <td>2 Full</td>
+        </tr>
+        <tr>
+          <td>Above-Grade Sq Ft</td>
+          <td>1,444</td>
+          <td>1,680</td>
+          <td>1,806</td>
+          <td>2,052</td>
+          <td>4,062</td>
+        </tr>
+        <tr>
+          <td>Finished Basement Sq Ft</td>
+          <td><strong>1,178</strong></td>
+          <td>0</td>
+          <td>0</td>
+          <td>503</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>Total Finished Sq Ft</td>
+          <td><strong>2,622</strong></td>
+          <td>1,680</td>
+          <td>1,806</td>
+          <td>2,555</td>
+          <td>4,062</td>
+        </tr>
+        <tr>
+          <td>Lot Size (Acres)</td>
+          <td><strong>1.45</strong></td>
+          <td>0.34</td>
+          <td>0.35</td>
+          <td>0.45</td>
+          <td>1.12</td>
+        </tr>
+        <tr>
+          <td>Garage</td>
+          <td><strong>3-Car Heated</strong></td>
+          <td>2-Car</td>
+          <td>2-Car</td>
+          <td>2-Car</td>
+          <td>2-Car</td>
+        </tr>
+        <tr>
+          <td>Water / Sewer</td>
+          <td>Well / Septic</td>
+          <td>Public / Public</td>
+          <td>Public / Public</td>
+          <td>Public / Public</td>
+          <td>Public / Public</td>
+        </tr>
+        <tr>
+          <td>Days on Market</td>
+          <td>&mdash;</td>
+          <td>14</td>
+          <td>5</td>
+          <td>34</td>
+          <td>7</td>
+        </tr>
+        <tr>
+          <td>SP / LP Ratio</td>
+          <td>&mdash;</td>
+          <td>101.8%</td>
+          <td>100.0%</td>
+          <td>98.6%</td>
+          <td>TBD</td>
+        </tr>
+        <tr>
+          <td>Price / Total Sq Ft</td>
+          <td><strong>$248&ndash;$257</strong></td>
+          <td>$363</td>
+          <td>$387</td>
+          <td>$274</td>
+          <td>$191 (listed)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     ADJUSTMENT ANALYSIS
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="section page-break">
+  <div class="section-header">
+    <div class="section-label">Valuation</div>
+    <div class="section-title">Comparable Adjustment Analysis</div>
+    <div class="divider"></div>
+    <p class="section-desc">Each comparable is adjusted to reflect how it would be valued if it had the same features as your property. Positive adjustments mean the comparable was inferior in that category; negative adjustments mean it was superior.</p>
+  </div>
+
+  <div class="comp-table-wrapper">
+    <table class="adj-table">
+      <thead>
+        <tr>
+          <th>Adjustment Factor</th>
+          <th>Comp 1<br>51 Sancho Dr<br>$610,000</th>
+          <th>Comp 2<br>6 Amari Ct<br>$699,900</th>
+          <th>Comp 3<br>23 Sancho Dr<br>$700,000</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sale Date / Market Conditions</td>
+          <td class="adj-neutral">$0</td>
+          <td class="adj-neutral">$0</td>
+          <td class="adj-positive">+$7,000</td>
+        </tr>
+        <tr>
+          <td>Lot Size (Subject: 1.45 ac)</td>
+          <td class="adj-positive">+$30,000</td>
+          <td class="adj-positive">+$30,000</td>
+          <td class="adj-positive">+$25,000</td>
+        </tr>
+        <tr>
+          <td>Above-Grade Living Area</td>
+          <td class="adj-negative">-$10,000</td>
+          <td class="adj-negative">-$15,000</td>
+          <td class="adj-negative">-$25,000</td>
+        </tr>
+        <tr>
+          <td>Finished Basement (+1,178 sf)</td>
+          <td class="adj-positive">+$40,000</td>
+          <td class="adj-positive">+$40,000</td>
+          <td class="adj-positive">+$20,000</td>
+        </tr>
+        <tr>
+          <td>Garage (3-Car Heated vs 2-Car)</td>
+          <td class="adj-positive">+$20,000</td>
+          <td class="adj-positive">+$20,000</td>
+          <td class="adj-positive">+$20,000</td>
+        </tr>
+        <tr>
+          <td>Age / Condition (2006 vs newer)</td>
+          <td class="adj-negative">-$15,000</td>
+          <td class="adj-negative">-$25,000</td>
+          <td class="adj-negative">-$15,000</td>
+        </tr>
+        <tr>
+          <td>Water / Sewer (Well/Septic vs Public)</td>
+          <td class="adj-negative">-$10,000</td>
+          <td class="adj-negative">-$10,000</td>
+          <td class="adj-negative">-$10,000</td>
+        </tr>
+        <tr>
+          <td>Location / Road (Private Dead-End)</td>
+          <td class="adj-negative">-$5,000</td>
+          <td class="adj-negative">-$5,000</td>
+          <td class="adj-negative">-$5,000</td>
+        </tr>
+        <tr>
+          <td>Style (Ranch / Single-Floor Living)</td>
+          <td class="adj-positive">+$5,000</td>
+          <td class="adj-positive">+$5,000</td>
+          <td class="adj-positive">+$5,000</td>
+        </tr>
+        <tr>
+          <td>Outdoor Features (Hot Tub / Deck)</td>
+          <td class="adj-positive">+$5,000</td>
+          <td class="adj-positive">+$5,000</td>
+          <td class="adj-positive">+$5,000</td>
+        </tr>
+        <tr>
+          <td>I-95 Proximity (Subject closer)</td>
+          <td class="adj-negative">-$5,000</td>
+          <td class="adj-negative">-$5,000</td>
+          <td class="adj-negative">-$5,000</td>
+        </tr>
+        <tr>
+          <td><strong>Net Adjustment</strong></td>
+          <td><strong class="adj-positive">+$55,000</strong></td>
+          <td><strong class="adj-positive">+$40,000</strong></td>
+          <td><strong class="adj-positive">+$22,000</strong></td>
+        </tr>
+        <tr class="total-row">
+          <td>Adjusted Sale Price</td>
+          <td><strong>$665,000</strong></td>
+          <td><strong>$739,900</strong></td>
+          <td><strong>$722,000</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top: 24px; padding: 20px 28px; background: var(--cream); border-radius: 12px; border-left: 4px solid var(--gold);">
+    <p style="font-size: 14px; color: var(--gray); line-height: 1.7;">
+      <strong style="color: var(--navy);">Note on Comp 4 (18 Buxton Road):</strong> Listed at $775,000 and currently pending. While located in Saco and having 4 bedrooms, it is an 1826 antique colonial with 4,062 sq ft and a 600 SF heated outbuilding &mdash; a fundamentally different property type. It is included for market context but excluded from the adjustment grid due to limited comparability.
+    </p>
+    <p style="font-size: 14px; color: var(--gray); line-height: 1.7; margin-top: 8px;">
+      <strong style="color: var(--navy);">Note on Comp 220 North Street:</strong> Sold at $770,000 but includes an ADU generating $2,200/mo rental income, a 4-car garage with 11' ceilings, solar array, and above-ground pool. The income-producing component makes direct comparison inappropriate. Provided as additional market context &mdash; it demonstrates that enhanced properties in Saco are commanding $700,000+ prices.
+    </p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     MARKET CONTEXT
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="section section-alt page-break">
+  <div class="section-header">
+    <div class="section-label">Market Snapshot</div>
+    <div class="section-title">Saco Real Estate Market</div>
+    <div class="divider"></div>
+  </div>
+
+  <div class="market-cards">
+    <div class="market-card">
+      <div class="number">$558K</div>
+      <div class="label">Median Home Value</div>
+      <div class="sub">Saco, ME</div>
+    </div>
+    <div class="market-card">
+      <div class="number">+8%</div>
+      <div class="label">2-Year Appreciation</div>
+      <div class="sub">Consistent Growth</div>
+    </div>
+    <div class="market-card">
+      <div class="number">96/100</div>
+      <div class="label">Family Friendly Score</div>
+      <div class="sub">Highly Desirable</div>
+    </div>
+  </div>
+
+  <div class="market-cards" style="margin-top: 20px;">
+    <div class="market-card">
+      <div class="number">7&ndash;14</div>
+      <div class="label">Avg Days on Market</div>
+      <div class="sub">Strong Demand</div>
+    </div>
+    <div class="market-card">
+      <div class="number">99%+</div>
+      <div class="label">Avg Sale/List Ratio</div>
+      <div class="sub">Sellers Market</div>
+    </div>
+    <div class="market-card">
+      <div class="number">$584.8K</div>
+      <div class="label">CoreLogic AVM</div>
+      <div class="sub">Subject Property (Pre-Renovation)</div>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="margin-top: 36px;">
+    <h3>Market Conditions Favor Sellers</h3>
+    <p>The Saco market continues to demonstrate strong demand with limited inventory. Recent comparable sales show homes receiving offers within the first two weeks, often at or above list price. The SP/LP ratios for our core comparables range from 98.6% to 101.8%, indicating buyers are competing for well-priced homes. Properties with standout features &mdash; like your finished basement and oversized garage &mdash; are especially well-positioned to attract motivated buyers quickly.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     VALUE CONCLUSION
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="section page-break">
+  <div class="section-header">
+    <div class="section-label">Recommendation</div>
+    <div class="section-title">Suggested List Price</div>
+    <div class="divider"></div>
+  </div>
+
+  <div class="value-conclusion">
+    <div class="label">Recommended List Price Range</div>
+    <div class="value-range">$650,000 &ndash; $675,000</div>
+    <p class="value-note">
+      Based on analysis of recent comparable sales, current market conditions, and the significant improvements made to the property since its last sale at $565,000 in May 2024.
+    </p>
+    <div class="value-rationale">
+      <div class="rationale-item">
+        <div class="num">$665K</div>
+        <div class="text">Adjusted Comp 1<br>(51 Sancho Dr)</div>
+      </div>
+      <div class="rationale-item">
+        <div class="num">$740K</div>
+        <div class="text">Adjusted Comp 2<br>(6 Amari Ct)</div>
+      </div>
+      <div class="rationale-item">
+        <div class="num">$722K</div>
+        <div class="text">Adjusted Comp 3<br>(23 Sancho Dr)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-top: 40px;">
+    <div>
+      <h3 style="font-family: 'Playfair Display', serif; font-size: 22px; color: var(--navy); margin-bottom: 16px;">Why This Range</h3>
+      <p style="font-size: 15px; color: var(--gray); line-height: 1.8;">
+        The adjusted comparable values range from <strong style="color: var(--navy);">$665,000 to $740,000</strong>. Our recommended list price of <strong style="color: var(--navy);">$650,000&ndash;$675,000</strong> positions your property competitively, accounting for:
+      </p>
+      <ul style="margin-top: 16px; font-size: 14px; color: var(--gray); line-height: 2; padding-left: 20px;">
+        <li>The property's <strong style="color: var(--navy);">well/septic</strong> vs. public utilities on comps</li>
+        <li>A <strong style="color: var(--navy);">2006 build</strong> vs. newer construction (2020&ndash;2024)</li>
+        <li>Private/gravel road access vs. paved public roads</li>
+        <li><strong style="color: var(--navy);">Proximity to I-95</strong> &mdash; closer than comparables, potential noise factor</li>
+        <li>Basement finish may not be fully permitted (common adjustment)</li>
+        <li>Strategic pricing to generate multiple offers and maximize net proceeds</li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="font-family: 'Playfair Display', serif; font-size: 22px; color: var(--navy); margin-bottom: 16px;">Your Competitive Advantages</h3>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div class="improvement-item">
+          <div class="check">&#10003;</div>
+          <span><strong>Largest lot</strong> of any comp at 1.45 acres</span>
+        </div>
+        <div class="improvement-item">
+          <div class="check">&#10003;</div>
+          <span><strong>3-car heated garage</strong> &mdash; rare and high-demand</span>
+        </div>
+        <div class="improvement-item">
+          <div class="check">&#10003;</div>
+          <span><strong>Most total finished space</strong> at 2,622 sq ft</span>
+        </div>
+        <div class="improvement-item">
+          <div class="check">&#10003;</div>
+          <span><strong>Ranch layout</strong> appeals to wide buyer pool</span>
+        </div>
+        <div class="improvement-item">
+          <div class="check">&#10003;</div>
+          <span><strong>Hot tub &amp; large deck</strong> for outdoor living</span>
+        </div>
+        <div class="improvement-item">
+          <div class="check">&#10003;</div>
+          <span><strong>Privacy &amp; wooded setting</strong> on dead-end</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 40px; padding: 28px 36px; background: var(--cream); border-radius: 12px; border: 2px solid var(--gold);">
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 20px; color: var(--navy); margin-bottom: 12px;">Equity Position Summary</h3>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; text-align: center;">
+      <div>
+        <div style="font-size: 13px; color: var(--gray); margin-bottom: 4px;">Last Sale (May 2024)</div>
+        <div style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--navy);">$565,000</div>
+      </div>
+      <div>
+        <div style="font-size: 13px; color: var(--gray); margin-bottom: 4px;">Recommended List Price</div>
+        <div style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--green);">$650,000&ndash;$675,000</div>
+      </div>
+      <div>
+        <div style="font-size: 13px; color: var(--gray); margin-bottom: 4px;">Estimated Equity Gain</div>
+        <div style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--green);">$85K&ndash;$110K</div>
+        <div style="font-size: 12px; color: var(--green); font-weight: 600;">+15% to +19.5%</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FOOTER / AGENT INFO
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="report-footer">
+  <div class="agent-name">Richard Reynolds</div>
+  <div class="brokerage">Keller Williams Realty of Maine</div>
+  <p>info@homesweetmaine.com &bull; (207) 865-8600</p>
+  <div class="disclaimer">
+    This Comparative Market Analysis is intended to assist in determining a listing price for the property and is not an appraisal. The information contained herein has been gathered from the Maine MLS (Maine Listings), public records, and CoreLogic. While deemed reliable, it is not guaranteed. All measurements are approximate. This analysis reflects market conditions as of April 2, 2026, and market values may change. The final listing price is at the sole discretion of the property owner. Copyright Maine Listings &copy; 2026.
+  </div>
+</div>
+
+</body>
+</html>

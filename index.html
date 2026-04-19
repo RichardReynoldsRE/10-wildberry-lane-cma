@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>10 Wildberry Lane · Saco, Maine · CMA Documents</title>
+<meta name="description" content="Comparative Market Analyses for 10 Wildberry Lane, Saco ME. Two reports: the original April 2 CMA and the April 19 MREI-driven update." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg: #f4efe4;
+    --bg-alt: #eae3d4;
+    --bg-deep: #1e1b18;
+    --ink: #1e1b18;
+    --ink-mute: #6e6860;
+    --rule: #d5cdbd;
+    --ff-d: 'Fraunces', Georgia, serif;
+    --ff-b: 'Inter', -apple-system, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--ff-b);
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 80px clamp(24px, 5vw, 72px) 120px; }
+
+  header { padding-bottom: 48px; border-bottom: 1px solid var(--rule); margin-bottom: 64px; }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-family: var(--ff-d);
+    font-weight: 400;
+    font-variation-settings: 'opsz' 144;
+    font-size: clamp(38px, 6vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--ink-mute);
+    font-weight: 400;
+  }
+  .subtitle {
+    font-family: var(--ff-d);
+    font-size: 20px;
+    color: var(--ink-mute);
+    max-width: 680px;
+  }
+  .price-pill {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    margin-top: 28px;
+  }
+  .price-pill strong {
+    font-family: var(--ff-d);
+    font-weight: 500;
+    font-size: 16px;
+    margin-left: 8px;
+  }
+
+  section h2 {
+    font-family: var(--ff-d);
+    font-weight: 400;
+    font-size: 28px;
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+
+  .reports {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 80px;
+  }
+  @media (max-width: 720px) { .reports { grid-template-columns: 1fr; } }
+
+  .report-card {
+    display: block;
+    background: var(--bg-alt);
+    padding: 36px 32px;
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    transition: transform .3s ease, box-shadow .3s ease, background .3s ease;
+  }
+  .report-card:hover {
+    background: var(--bg);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(30, 27, 24, 0.08);
+  }
+  .report-card .num {
+    font-family: var(--ff-d);
+    font-style: italic;
+    font-size: 32px;
+    color: var(--ink-mute);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .report-card h3 {
+    font-family: var(--ff-d);
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .report-card .meta {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 20px;
+  }
+  .report-card p {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: 22px;
+  }
+  .report-card .cta {
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 2px;
+  }
+
+  .property-info {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 40px 0 80px;
+  }
+  @media (max-width: 640px) { .property-info { grid-template-columns: repeat(2, 1fr); } }
+  .info-stat {
+    padding: 20px 4px;
+    border-top: 1px solid var(--rule);
+  }
+  .info-stat .n {
+    font-family: var(--ff-d);
+    font-size: 28px;
+    letter-spacing: -0.01em;
+  }
+  .info-stat .l {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-top: 6px;
+  }
+
+  .intent {
+    padding: 40px;
+    background: var(--bg-deep);
+    color: var(--bg);
+    margin-top: 40px;
+  }
+  .intent h2 { color: var(--bg); }
+  .intent p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(244, 239, 228, 0.78);
+    max-width: 680px;
+    margin-top: 8px;
+  }
+
+  footer {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    font-size: 12px;
+    color: var(--ink-mute);
+    line-height: 1.6;
+  }
+  footer strong { color: var(--ink); font-weight: 500; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Comparative Market Analysis</div>
+    <h1>10 Wildberry Lane,<br/><em>Saco, Maine.</em></h1>
+    <p class="subtitle">Two analyses &mdash; the original April 2 CMA and the April 19 update that revises the pricing using a broader comp pool from the Maine Real Estate Intelligence database and applies an I-95 proximity adjustment.</p>
+    <div class="price-pill">Recommended List <strong>$685,000</strong></div>
+  </header>
+
+  <section>
+    <h2>The reports</h2>
+
+    <div class="reports">
+      <a class="report-card" href="cma-v2-mrei-update.html">
+        <div class="num">02.</div>
+        <h3>MREI-Updated CMA</h3>
+        <div class="meta">April 19, 2026 &middot; Current</div>
+        <p>Six hand-picked Saco comparables from the MREI database, time-adjusted for 7.2% YoY appreciation, net of a 6% I-95 proximity discount. Includes prior-sale context and alternative pricing scenarios.</p>
+        <span class="cta">View report →</span>
+      </a>
+
+      <a class="report-card" href="cma-v1-original.html">
+        <div class="num">01.</div>
+        <h3>Original CMA</h3>
+        <div class="meta">April 2, 2026 &middot; Superseded</div>
+        <p>The original nine-page CMA with full subject photography, detailed floor plans, four subdivision-level comparables, and the initial $650K&ndash;$675K list recommendation.</p>
+        <span class="cta">View report →</span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Subject property</h2>
+    <div class="property-info">
+      <div class="info-stat"><div class="n">4</div><div class="l">Bedrooms</div></div>
+      <div class="info-stat"><div class="n">2.5</div><div class="l">Bathrooms</div></div>
+      <div class="info-stat"><div class="n">2,622</div><div class="l">Finished SF</div></div>
+      <div class="info-stat"><div class="n">1.45</div><div class="l">Acres</div></div>
+      <div class="info-stat"><div class="n">2006</div><div class="l">Year Built</div></div>
+      <div class="info-stat"><div class="n">3-car</div><div class="l">Heated Garage</div></div>
+      <div class="info-stat"><div class="n">1,444</div><div class="l">Main Level SF</div></div>
+      <div class="info-stat"><div class="n">1,178</div><div class="l">Basement SF</div></div>
+    </div>
+  </section>
+
+  <section class="intent">
+    <h2>Why two reports?</h2>
+    <p>The original April 2 CMA correctly identified the bones of the pricing conversation but used a narrower comp pool. The April 19 update widens the net, incorporates the seller&rsquo;s May 2024 purchase price, references appreciation pro-rated to each comp&rsquo;s close date, and applies a location adjustment for Wildberry Lane&rsquo;s proximity to I-95. The net effect: a sharper $685,000 recommendation that sits just under the $700K filter threshold and reflects what the Maine Listings record actually shows.</p>
+  </section>
+
+  <footer>
+    <strong>Richard Reynolds</strong> · Keller Williams Realty of Maine · Home Sweet Maine<br/>
+    richard@homesweetmaine.com · (207) 560-4883<br/><br/>
+    Information is deemed reliable but not guaranteed. All measurements are approximate. These analyses reflect market conditions as of the date noted on each report and are not appraisals.
+  </footer>
+
+</div>
+
+</body>
+</html>

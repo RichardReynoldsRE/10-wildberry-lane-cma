@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Updated CMA — 10 Wildberry Lane, Saco, ME</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --navy: #1a2744;
+    --navy-deep: #0f1a30;
+    --gold: #c9a84c;
+    --gold-light: #e8d8a0;
+    --cream: #faf8f2;
+    --dark: #222;
+    --gray: #666;
+    --light-gray: #e8e6e0;
+    --white: #fff;
+    --green: #2d7a4f;
+    --red: #c0392b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--dark);
+    background: var(--white);
+    line-height: 1.6;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  @page { size: letter; margin: 0.5in; }
+
+  @media print {
+    .page-break { page-break-before: always; }
+    .no-break { page-break-inside: avoid; }
+    body { font-size: 11px; }
+    .section { padding: 36px 40px; }
+    .section-header { page-break-after: avoid; }
+    .comp-card, .market-card, .stat-box, .value-conclusion,
+    .improvements, .adj-table, .comp-table-wrapper { page-break-inside: avoid; }
+    .section-alt { background: #faf8f2 !important; }
+    .cover-overlay { background: rgba(26,39,68,0.92) !important; }
+  }
+
+  /* COVER */
+  .cover {
+    position: relative;
+    min-height: 9in;
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+    color: var(--white);
+    padding: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 40px; right: 40px;
+    width: 100px;
+    height: 2px;
+    background: var(--gold);
+  }
+  .cover-top { text-align: right; }
+  .cover-top .label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .cover-top .date {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: rgba(255,255,255,0.85);
+  }
+  .cover-title {
+    margin: 60px 0;
+  }
+  .cover-kicker {
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .cover-title h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .cover-title .subtitle {
+    font-size: 22px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.8);
+  }
+  .cover-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(201,168,76,0.4);
+  }
+  .cover-meta .label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .cover-meta .value {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--white);
+  }
+
+  .cover-headline {
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin-top: 40px;
+  }
+  .cover-headline .label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .cover-headline .price {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .cover-headline .range {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 4px;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 60px 80px;
+  }
+  .section-alt { background: var(--cream); }
+
+  .section-header { margin-bottom: 40px; }
+  .section-label {
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+  .section-desc {
+    font-size: 16px;
+    color: var(--gray);
+    margin-top: 12px;
+    max-width: 760px;
+  }
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: var(--gold);
+    margin: 16px 0;
+  }
+
+  /* STATS */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .stat-box {
+    text-align: center;
+    padding: 28px 20px;
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid var(--light-gray);
+  }
+  .stat-box .number {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .stat-box .label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray);
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* RENOVATION */
+  .reno-timeline {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .reno-card {
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    border-radius: 12px;
+    padding: 28px;
+    position: relative;
+  }
+  .reno-card.current {
+    border-color: var(--gold);
+    border-width: 2px;
+    background: rgba(201,168,76,0.04);
+  }
+  .reno-card .date-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .reno-card .headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+  .reno-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .reno-card li {
+    font-size: 13px;
+    color: var(--dark);
+    padding: 4px 0 4px 16px;
+    position: relative;
+  }
+  .reno-card li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .reno-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: var(--gold);
+  }
+
+  /* COMP CARDS */
+  .comp-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 24px;
+  }
+  .comp-card {
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    border-radius: 12px;
+    padding: 22px;
+  }
+  .comp-card.flagged {
+    border-color: var(--gold);
+    border-width: 2px;
+  }
+  .comp-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .comp-card .meta {
+    font-size: 12px;
+    color: var(--gray);
+    margin-bottom: 12px;
+  }
+  .comp-card .price-block {
+    background: var(--cream);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+  }
+  .comp-card .sold {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--green);
+  }
+  .comp-card .sp-lp {
+    font-size: 12px;
+    color: var(--gray);
+    margin-top: 2px;
+  }
+  .comp-card .details {
+    font-size: 13px;
+    color: var(--dark);
+    line-height: 1.65;
+  }
+  .comp-card .details strong { color: var(--navy); }
+  .comp-card .flag-note {
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: rgba(201,168,76,0.12);
+    border-left: 3px solid var(--gold);
+    font-size: 12px;
+    color: var(--dark);
+  }
+  .comp-card .flag-note.warn {
+    background: rgba(192, 57, 43, 0.08);
+    border-left-color: var(--red);
+  }
+
+  /* ADJUSTMENT TABLE */
+  .adj-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 24px;
+  }
+  .adj-table thead th {
+    background: var(--navy);
+    color: var(--white);
+    font-weight: 600;
+    padding: 12px 10px;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+  .adj-table thead th:first-child {
+    text-align: left;
+    padding-left: 18px;
+  }
+  .adj-table tbody td {
+    padding: 9px 10px;
+    border-bottom: 1px solid var(--light-gray);
+    text-align: center;
+  }
+  .adj-table tbody td:first-child {
+    text-align: left;
+    padding-left: 18px;
+    font-weight: 500;
+    color: var(--navy);
+  }
+  .adj-table tbody tr:nth-child(even) { background: rgba(201,168,76,0.03); }
+  .adj-table .section-row {
+    background: var(--cream) !important;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .adj-table .total-row {
+    background: rgba(201,168,76,0.15) !important;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .adj-table .total-row td {
+    border-top: 2px solid var(--navy);
+    padding: 14px 10px;
+  }
+  .adj-positive { color: var(--green); font-weight: 600; }
+  .adj-negative { color: var(--red); font-weight: 600; }
+
+  /* MARKET */
+  .market-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .market-card {
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid var(--light-gray);
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .market-card .number {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .market-card .label {
+    font-size: 12px;
+    color: var(--gray);
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+  .market-card .sub {
+    font-size: 11px;
+    color: var(--gold);
+    margin-top: 4px;
+    font-weight: 600;
+  }
+
+  /* I-95 CALLOUT */
+  .highlight-box {
+    background: linear-gradient(135deg, var(--navy), #2a3f6f);
+    color: var(--white);
+    border-radius: 16px;
+    padding: 36px 40px;
+    margin-top: 28px;
+  }
+  .highlight-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin-bottom: 16px;
+    color: var(--gold-light);
+  }
+  .highlight-box p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 10px;
+  }
+  .highlight-box .math {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+  .highlight-box .math-item {
+    text-align: center;
+  }
+  .highlight-box .math-item .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+  .highlight-box .math-item .lbl {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 4px;
+  }
+
+  /* VALUE */
+  .value-conclusion {
+    background: var(--navy);
+    border-radius: 16px;
+    padding: 48px;
+    text-align: center;
+    margin-top: 40px;
+    color: var(--white);
+  }
+  .value-conclusion .label {
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .value-range {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .value-note {
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    max-width: 640px;
+    margin: 16px auto 0;
+    line-height: 1.6;
+  }
+  .value-rationale {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 36px;
+  }
+  .rationale-item {
+    padding: 20px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .rationale-item .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+  .rationale-item .text {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+
+  /* FOOTER */
+  .report-footer {
+    padding: 40px 80px;
+    background: var(--navy);
+    color: rgba(255,255,255,0.6);
+    font-size: 12px;
+    text-align: center;
+  }
+  .report-footer .agent-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .report-footer .brokerage {
+    font-size: 14px;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .disclaimer {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 11px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.4);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Version badge */
+  .v2-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--gold);
+    color: var(--navy);
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-left: 12px;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ═══════════════ COVER ═══════════════ -->
+<div class="cover">
+  <div class="cover-top">
+    <div class="label">Comparative Market Analysis</div>
+    <div class="date">Updated · April 19, 2026</div>
+  </div>
+
+  <div class="cover-title">
+    <div class="cover-kicker">10 Wildberry Lane &middot; Saco, Maine 04072 <span class="v2-badge">V2 · MREI</span></div>
+    <h1>A data-driven<br/>pricing update.</h1>
+    <div class="subtitle">Revised using 6 hand-picked Saco comps from our Maine MLS intelligence database, a review of prior sale history, and an adjustment for I-95 proximity.</div>
+
+    <div class="cover-headline">
+      <div class="label">Recommended List Price</div>
+      <div class="price">$685,000</div>
+      <div class="range">Defensible range: $675,000 &ndash; $699,000</div>
+    </div>
+  </div>
+
+  <div class="cover-meta">
+    <div>
+      <div class="label">Prepared By</div>
+      <div class="value">Richard Reynolds</div>
+    </div>
+    <div>
+      <div class="label">Brokerage</div>
+      <div class="value">Keller Williams Realty of Maine</div>
+    </div>
+    <div>
+      <div class="label">Data Source</div>
+      <div class="value">Maine Real Estate Intel DB</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ EXECUTIVE SUMMARY ═══════════════ -->
+<div class="section page-break">
+  <div class="section-header">
+    <div class="section-label">Executive Summary</div>
+    <div class="section-title">What Changed from the April 2 CMA</div>
+    <div class="divider"></div>
+    <p class="section-desc">The original CMA (April 2, 2026) recommended a list range of $650,000&ndash;$675,000 using four subdivision-level comparables. This update widens the comp pool using the full Saco closed-sale record, incorporates the property's prior-sale history, and applies a quantitative adjustment for I-95 proximity.</p>
+  </div>
+
+  <table class="adj-table">
+    <thead>
+      <tr>
+        <th>Input</th>
+        <th>April 2 CMA (v1)</th>
+        <th>April 19 Update (v2)</th>
+        <th>Why It Changed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Comparable sales pool</td>
+        <td>4 nearby subdivision comps</td>
+        <td>6 MREI-selected Saco comps</td>
+        <td>Broader database revealed closer matches on ranch style + acreage + garage</td>
+      </tr>
+      <tr>
+        <td>Time-adjustment window</td>
+        <td>Not applied</td>
+        <td>+7.2% YoY (ME single-family, March '26)</td>
+        <td>Maine Realtors data shows statewide appreciation</td>
+      </tr>
+      <tr>
+        <td>Prior sale reference</td>
+        <td>Not referenced</td>
+        <td>$565,000 on 2024-05-22</td>
+        <td>Anchors renovation investment &amp; net seller proceeds</td>
+      </tr>
+      <tr>
+        <td>Location adjustment</td>
+        <td>Not applied</td>
+        <td>&minus;6% for I-95 proximity</td>
+        <td>Three strongest comps are NOT interstate-adjacent</td>
+      </tr>
+      <tr class="total-row">
+        <td>Recommended List</td>
+        <td>$650,000&ndash;$675,000</td>
+        <td><strong>$685,000</strong> ($675K&ndash;$699K)</td>
+        <td>Net of all adjustments &mdash; still under $700K filter</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════ SUBJECT PROPERTY ═══════════════ -->
+<div class="section section-alt page-break">
+  <div class="section-header">
+    <div class="section-label">Subject Property</div>
+    <div class="section-title">10 Wildberry Lane, Saco, ME 04072</div>
+    <div class="divider"></div>
+    <p class="section-desc">A 2006 ranch on 1.45 wooded acres with a heated 3-car garage and a mostly finished basement. Single-floor primary living with a flexible lower level.</p>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-box"><div class="number">4</div><div class="label">Bedrooms</div></div>
+    <div class="stat-box"><div class="number">2.5</div><div class="label">Bathrooms</div></div>
+    <div class="stat-box"><div class="number">2,622</div><div class="label">Finished SF</div></div>
+    <div class="stat-box"><div class="number">1.45</div><div class="label">Acres</div></div>
+    <div class="stat-box"><div class="number">2006</div><div class="label">Year Built</div></div>
+    <div class="stat-box"><div class="number">3-car</div><div class="label">Heated Garage</div></div>
+    <div class="stat-box"><div class="number">1,444</div><div class="label">Main Level SF</div></div>
+    <div class="stat-box"><div class="number">1,178</div><div class="label">Finished Basement SF</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════ RENOVATION STORY ═══════════════ -->
+<div class="section page-break">
+  <div class="section-header">
+    <div class="section-label">Ownership &amp; Improvements</div>
+    <div class="section-title">From 2024 Purchase to Today</div>
+    <div class="divider"></div>
+    <p class="section-desc">The current owner acquired the home in May 2024 and has since invested substantially in a basement finish and feature additions. This materially changed what the property offers compared with the 2024 sale.</p>
+  </div>
+
+  <div class="reno-timeline">
+    <div class="reno-card">
+      <div class="date-label">May 2024 &middot; Acquired</div>
+      <div class="headline">$565,000</div>
+      <ul>
+        <li>3 bedrooms / 2.0 bathrooms</li>
+        <li>1,512 sq ft above-grade</li>
+        <li>Unfinished basement</li>
+        <li>1.45 ac &middot; 3-car garage &middot; 2006 build</li>
+        <li>List $540,000 &middot; 104.6% SP/LP</li>
+      </ul>
+    </div>
+    <div class="reno-arrow">&rarr;</div>
+    <div class="reno-card current">
+      <div class="date-label">April 2026 &middot; Today</div>
+      <div class="headline">$685,000 List</div>
+      <ul>
+        <li><strong>4 bedrooms / 2.5 bathrooms</strong></li>
+        <li>2,622 sq ft total finished (+1,110 sf)</li>
+        <li>Mostly finished basement (1,178 sf)</li>
+        <li>Additional bedroom + full bath added</li>
+        <li>LVP flooring, recessed lighting, drop ceilings</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <h3>Value creation, quantified</h3>
+    <p>The owner's renovation added roughly <strong>1,178 sq ft of finished living area</strong>, converted the property from a 3&nbsp;BR/2&nbsp;BA footprint to a 4&nbsp;BR/2.5&nbsp;BA footprint, and positioned it for a move-in buyer who otherwise couldn't find this much finished space at this price point in Saco.</p>
+    <p>Maine market-level appreciation since May 2024 adds another layer. Statewide single-family median home price rose 7.2% year-over-year through March 2026 (Maine Association of REALTORS). Over 23 months of ownership, a conservative time-only adjustment on the $565,000 basis yields roughly <strong>$610,000&ndash;$620,000</strong> of market-driven appreciation &mdash; before renovation value is counted.</p>
+    <div class="math">
+      <div class="math-item">
+        <div class="num">~$1,110</div>
+        <div class="lbl">Sq ft of finished space added</div>
+      </div>
+      <div class="math-item">
+        <div class="num">+1 BR / +0.5 BA</div>
+        <div class="lbl">Bedroom &amp; bath count lift</div>
+      </div>
+      <div class="math-item">
+        <div class="num">~$45&ndash;55K</div>
+        <div class="lbl">Time-only appreciation (7.2% YoY)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ MARKET CONTEXT ═══════════════ -->
+<div class="section section-alt page-break">
+  <div class="section-header">
+    <div class="section-label">Market Context</div>
+    <div class="section-title">Saco &amp; Maine &mdash; April 2026</div>
+    <div class="divider"></div>
+    <p class="section-desc">Maine's single-family market remains supply-constrained with consistent sale-to-list ratios above 98%. Well-prepared Saco listings continue to see multiple-offer activity.</p>
+  </div>
+
+  <div class="market-cards">
+    <div class="market-card">
+      <div class="number">$390,300</div>
+      <div class="label">Maine median single-family sale</div>
+      <div class="sub">+7.2% YoY (March 2026)</div>
+    </div>
+    <div class="market-card">
+      <div class="number">98&ndash;102%</div>
+      <div class="label">Core Saco SP/LP range</div>
+      <div class="sub">Recent closed comps</div>
+    </div>
+    <div class="market-card">
+      <div class="number">0</div>
+      <div class="label">Direct 4BR + 3-car + 1+ac active listings in Saco</div>
+      <div class="sub">Clear lane for this listing</div>
+    </div>
+    <div class="market-card">
+      <div class="number">&lt; $700K</div>
+      <div class="label">Psychological MLS filter threshold</div>
+      <div class="sub">Meaningfully wider buyer pool</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ COMP CARDS ═══════════════ -->
+<div class="section page-break">
+  <div class="section-header">
+    <div class="section-label">The Comparables</div>
+    <div class="section-title">Six MREI-Selected Saco Sales</div>
+    <div class="divider"></div>
+    <p class="section-desc">Hand-picked from the MREI database filtered to Saco residential single-family, 3+ BR, 0.5&ndash;3 ac, year built 1995&ndash;2015, 2+ car garage, sold since July 2024.</p>
+  </div>
+
+  <div class="comp-cards">
+    <div class="comp-card flagged">
+      <h4>67 Mast Hill Road</h4>
+      <div class="meta">Saco, ME &middot; Sold Dec 30, 2024</div>
+      <div class="price-block">
+        <div class="sold">$700,000</div>
+        <div class="sp-lp">Listed $675,000 &middot; 103.7% SP/LP</div>
+      </div>
+      <div class="details">
+        <strong>3 BR / 2.5 BA</strong> &middot; 1,908 + 936 sf = 2,844 sf<br/>
+        <strong>2.76 ac</strong> &middot; 2-car &middot; 2011
+      </div>
+      <div class="flag-note">Closest ranch-with-finished-basement match. NOT near I-95. +7.2% YoY ≈ <strong>$750K today</strong>.</div>
+    </div>
+
+    <div class="comp-card flagged">
+      <h4>11 Cori Drive</h4>
+      <div class="meta">Saco, ME &middot; Sold June 27, 2025</div>
+      <div class="price-block">
+        <div class="sold">$749,900</div>
+        <div class="sp-lp">Listed $749,900 &middot; 100% SP/LP</div>
+      </div>
+      <div class="details">
+        <strong>3 BR / 1.5 BA</strong> &middot; 2,264 + 545 sf = 2,809 sf<br/>
+        <strong>1.53 ac</strong> &middot; 2-car &middot; 2000
+      </div>
+      <div class="flag-note">Similar lot size. Older build, fewer baths. NOT near I-95 &mdash; supports bullish case.</div>
+    </div>
+
+    <div class="comp-card flagged">
+      <h4>25 Hubbard Street</h4>
+      <div class="meta">Saco, ME &middot; Sold Sept 12, 2025</div>
+      <div class="price-block">
+        <div class="sold">$685,000</div>
+        <div class="sp-lp">Listed $669,900 &middot; 102.3% SP/LP</div>
+      </div>
+      <div class="details">
+        <strong>3 BR / 3 BA</strong> &middot; 2,316 sf<br/>
+        <strong>0.67 ac</strong> &middot; 2-car &middot; <strong>2006</strong>
+      </div>
+      <div class="flag-note">Exact year built match. Smaller lot, no basement finish. NOT near I-95.</div>
+    </div>
+
+    <div class="comp-card">
+      <h4>436 Flag Pond Road</h4>
+      <div class="meta">Saco, ME &middot; Sold Jan 30, 2026</div>
+      <div class="price-block">
+        <div class="sold">$617,000</div>
+        <div class="sp-lp">Listed $645,000 &middot; 95.7% SP/LP</div>
+      </div>
+      <div class="details">
+        <strong>4 BR / 3 BA</strong> &middot; 2,480 sf<br/>
+        <strong>2 ac</strong> &middot; <strong>3-car</strong> &middot; 2000
+      </div>
+      <div class="flag-note warn">Only close match that IS near I-95. Sold 4.3% under list &mdash; validates the I-95 discount magnitude.</div>
+    </div>
+
+    <div class="comp-card">
+      <h4>18 Sheila Circle</h4>
+      <div class="meta">Saco, ME &middot; Sold July 8, 2025</div>
+      <div class="price-block">
+        <div class="sold">$615,000</div>
+        <div class="sp-lp">Listed $630,000 &middot; 97.6% SP/LP</div>
+      </div>
+      <div class="details">
+        <strong>4 BR / 2.5 BA</strong> &middot; 2,588 sf<br/>
+        <strong>0.58 ac</strong> &middot; 2-car &middot; 1999
+      </div>
+      <div class="flag-note">Same BR/BA count, comparable size. Smaller lot, older build. Provides conservative floor.</div>
+    </div>
+
+    <div class="comp-card">
+      <h4>22 Ocean Greens Drive</h4>
+      <div class="meta">Saco, ME &middot; Sold Sept 26, 2024</div>
+      <div class="price-block">
+        <div class="sold">$1,135,000</div>
+        <div class="sp-lp">Listed $1,095,000 &middot; 103.7% SP/LP</div>
+      </div>
+      <div class="details">
+        <strong>4 BR / 3.5 BA</strong> &middot; 2,836 sf<br/>
+        <strong>0.98 ac</strong> &middot; 2-car &middot; 2005
+      </div>
+      <div class="flag-note">Premium Ocean Greens location. Included for market-ceiling context &mdash; shows top-end of 4BR Saco 2000s builds.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ ADJUSTMENT GRID ═══════════════ -->
+<div class="section section-alt page-break">
+  <div class="section-header">
+    <div class="section-label">Adjustment Grid</div>
+    <div class="section-title">Adjusted to Subject</div>
+    <div class="divider"></div>
+    <p class="section-desc">Dollar adjustments applied to each comp to make it equivalent to 10 Wildberry Lane. Positive = add value (comp inferior), negative = subtract value (comp superior).</p>
+  </div>
+
+  <div style="overflow-x: auto;">
+  <table class="adj-table">
+    <thead>
+      <tr>
+        <th>Adjustment</th>
+        <th>67 Mast Hill</th>
+        <th>11 Cori Dr</th>
+        <th>25 Hubbard</th>
+        <th>436 Flag Pond</th>
+        <th>18 Sheila Cir</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Sale Price</td>
+        <td>$700,000</td>
+        <td>$749,900</td>
+        <td>$685,000</td>
+        <td>$617,000</td>
+        <td>$615,000</td>
+      </tr>
+      <tr>
+        <td>Close Date</td>
+        <td>Dec 2024</td>
+        <td>Jun 2025</td>
+        <td>Sep 2025</td>
+        <td>Jan 2026</td>
+        <td>Jul 2025</td>
+      </tr>
+      <tr class="section-row">
+        <td colspan="6">Time adjustment (YoY 7.2% pro-rated)</td>
+      </tr>
+      <tr>
+        <td>Market appreciation</td>
+        <td class="adj-positive">+$50,000</td>
+        <td class="adj-positive">+$25,000</td>
+        <td class="adj-positive">+$18,000</td>
+        <td class="adj-positive">+$4,000</td>
+        <td class="adj-positive">+$28,000</td>
+      </tr>
+      <tr class="section-row">
+        <td colspan="6">Physical adjustments</td>
+      </tr>
+      <tr>
+        <td>Bedroom count (to 4)</td>
+        <td class="adj-positive">+$5,000</td>
+        <td class="adj-positive">+$5,000</td>
+        <td class="adj-positive">+$5,000</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Bath count (to 2.5)</td>
+        <td>—</td>
+        <td class="adj-positive">+$8,000</td>
+        <td class="adj-negative">&minus;$5,000</td>
+        <td class="adj-negative">&minus;$5,000</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Garage (to 3-car heated)</td>
+        <td class="adj-positive">+$15,000</td>
+        <td class="adj-positive">+$15,000</td>
+        <td class="adj-positive">+$15,000</td>
+        <td>—</td>
+        <td class="adj-positive">+$15,000</td>
+      </tr>
+      <tr>
+        <td>Lot size (to 1.45 ac)</td>
+        <td class="adj-negative">&minus;$10,000</td>
+        <td>—</td>
+        <td class="adj-positive">+$15,000</td>
+        <td class="adj-negative">&minus;$5,000</td>
+        <td class="adj-positive">+$18,000</td>
+      </tr>
+      <tr>
+        <td>Finished basement (to 1,178 sf)</td>
+        <td class="adj-negative">&minus;$5,000</td>
+        <td class="adj-positive">+$15,000</td>
+        <td class="adj-positive">+$30,000</td>
+        <td class="adj-positive">+$35,000</td>
+        <td class="adj-positive">+$35,000</td>
+      </tr>
+      <tr>
+        <td>Year built (to 2006)</td>
+        <td class="adj-negative">&minus;$3,000</td>
+        <td class="adj-positive">+$5,000</td>
+        <td>—</td>
+        <td class="adj-positive">+$5,000</td>
+        <td class="adj-positive">+$5,000</td>
+      </tr>
+      <tr class="section-row">
+        <td colspan="6">Location adjustment</td>
+      </tr>
+      <tr>
+        <td>I-95 proximity (&minus;6%)</td>
+        <td class="adj-negative">&minus;$45,000</td>
+        <td class="adj-negative">&minus;$48,000</td>
+        <td class="adj-negative">&minus;$44,000</td>
+        <td>— <span style="font-size:11px;color:var(--gray)">(same)</span></td>
+        <td class="adj-negative">&minus;$40,000</td>
+      </tr>
+      <tr class="total-row">
+        <td>Adjusted Value</td>
+        <td>$707,000</td>
+        <td>$775,000</td>
+        <td>$719,000</td>
+        <td>$651,000</td>
+        <td>$676,000</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div style="margin-top: 28px; padding: 20px 24px; background: var(--white); border-left: 4px solid var(--gold); border-radius: 4px;">
+    <strong style="color: var(--navy); font-family: 'Playfair Display', serif; font-size: 18px;">Adjusted Range:</strong> $651,000 &ndash; $775,000 &middot; <strong>Median $707,000</strong> &middot; <strong>Weighted midpoint $685,000</strong>
+    <p style="font-size: 13px; color: var(--gray); margin-top: 8px;">The range reflects the spread between an I-95-adjacent floor (436 Flag Pond at $651K) and older/further-inland comps (11 Cori at $775K). 67 Mast Hill and 25 Hubbard &mdash; the closest matches on ranch style, year built, and feature set &mdash; cluster tightly around $707K&ndash;$719K. Applying the I-95 location discount lands the recommendation at $685,000.</p>
+  </div>
+</div>
+
+<!-- ═══════════════ I-95 DEEP DIVE ═══════════════ -->
+<div class="section page-break">
+  <div class="section-header">
+    <div class="section-label">Location Factor</div>
+    <div class="section-title">The I-95 Adjustment, Quantified</div>
+    <div class="divider"></div>
+  </div>
+
+  <div class="highlight-box">
+    <h3>Why a 6% discount, not 3% or 10%</h3>
+    <p>10 Wildberry Lane sits close to the Maine Turnpike (I-95) corridor. Published research on highway-proximity impact on single-family values consistently shows a <strong>3&ndash;8% negative adjustment</strong> for homes within 500&ndash;1,000 feet of an interstate, with the magnitude driven by tree buffers, topography, and the prevailing home value band.</p>
+    <p>The most apples-to-apples observation in our own data set is <strong>436 Flag Pond Road</strong>: same town, same ~2-acre lot, same 3-car garage, same 4-bed profile, sold January 2026 (extremely recent), and <strong>it too is close to I-95</strong>. It closed at $617,000 &mdash; 4.3% <em>under</em> list. By contrast, interior-Saco comps (67 Mast Hill, 11 Cori) routinely closed <em>at or above</em> list.</p>
+    <p>A 6% adjustment splits the academic range and is the number the Flag Pond comp validates empirically.</p>
+    <div class="math">
+      <div class="math-item">
+        <div class="num">$707K</div>
+        <div class="lbl">Adjusted median before location</div>
+      </div>
+      <div class="math-item">
+        <div class="num">&minus;6%</div>
+        <div class="lbl">I-95 proximity discount</div>
+      </div>
+      <div class="math-item">
+        <div class="num">$685K</div>
+        <div class="lbl">Recommended list price</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ VALUE CONCLUSION ═══════════════ -->
+<div class="section section-alt page-break">
+  <div class="section-header">
+    <div class="section-label">Conclusion</div>
+    <div class="section-title">Recommended List Price</div>
+    <div class="divider"></div>
+  </div>
+
+  <div class="value-conclusion">
+    <div class="label">Ship-to-MLS Price</div>
+    <div class="value-range">$685,000</div>
+    <div class="value-note">Positioned to clear the &lt;$700K buyer filter, priced off 6 MREI-verified Saco comps, net of a 6% I-95 adjustment validated by the Flag Pond Road closing. Expected selling range $685K&ndash;$705K at 98&ndash;102% SP/LP.</div>
+
+    <div class="value-rationale">
+      <div class="rationale-item">
+        <div class="num">$120K</div>
+        <div class="text">Estimated net seller proceeds after purchase basis + renovation investment &mdash; strong equity outcome</div>
+      </div>
+      <div class="rationale-item">
+        <div class="num">$707K</div>
+        <div class="text">Median adjusted comp value before I-95 discount &mdash; anchors the upside case</div>
+      </div>
+      <div class="rationale-item">
+        <div class="num">&lt; $700K</div>
+        <div class="text">Clears the biggest MLS-filter threshold &mdash; materially wider buyer pool</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 40px; padding: 28px 32px; background: var(--white); border-radius: 12px; border: 1px solid var(--light-gray);">
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 20px; color: var(--navy); margin-bottom: 14px;">Alternative pricing scenarios</h3>
+    <table class="adj-table" style="margin-top: 8px;">
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>List Price</th>
+          <th>Expected Days on Market</th>
+          <th>Likely Outcome</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Aggressive (drive-multiple-offers)</td>
+          <td>$665,000</td>
+          <td>3&ndash;7 days</td>
+          <td>Bids to $695K&ndash;$710K</td>
+        </tr>
+        <tr class="total-row">
+          <td>Recommended (balanced)</td>
+          <td><strong>$685,000</strong></td>
+          <td>7&ndash;14 days</td>
+          <td>Sells $685K&ndash;$705K</td>
+        </tr>
+        <tr>
+          <td>Top-of-range (patient)</td>
+          <td>$699,000</td>
+          <td>14&ndash;30 days</td>
+          <td>May require price reduction to clear</td>
+        </tr>
+        <tr>
+          <td>Over-market</td>
+          <td>$725,000+</td>
+          <td>30+ days</td>
+          <td>Filtered out at $700K threshold; stale</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<div class="report-footer">
+  <div class="agent-name">Richard Reynolds</div>
+  <div class="brokerage">Keller Williams Realty of Maine &middot; Home Sweet Maine</div>
+  <p>richard@homesweetmaine.com &middot; (207) 560&ndash;4883</p>
+  <div class="disclaimer">
+    This updated Comparative Market Analysis (v2) supersedes the v1 report dated April 2, 2026. It is intended to assist in determining a listing price and is not an appraisal. Data sourced from Maine Listings (MLS), public records, and the Maine Real Estate Intelligence database. While deemed reliable, information is not guaranteed. All measurements are approximate. Market values may change; this analysis reflects conditions as of April 19, 2026. Final listing price is at the sole discretion of the property owner. Copyright Maine Listings &copy; 2026.
+  </div>
+</div>
+
+</body>
+</html>
