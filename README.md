@@ -9,7 +9,7 @@ Two reports are included:
 | **Original CMA** (9-page, full photography & floor plans) | April 2, 2026 | Superseded | [`cma-v1-original.html`](cma-v1-original.html) |
 | **MREI-Updated CMA** (6 comps, I-95 adjustment, prior-sale context) | April 19, 2026 | **Current** | [`cma-v2-mrei-update.html`](cma-v2-mrei-update.html) |
 
-**Recommended list price: $685,000**
+**Active list price: $725,000** (taken from the top of the v2 MREI-adjusted comp range; the v1 and v2 CMAs remain as dated historical analyses.)
 
 ## View online
 
